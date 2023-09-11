@@ -3,6 +3,10 @@ import './Signup.css'; // Import the CSS file for styling
 import { Link } from 'react-router-dom';
 
 interface FormData {
+  password2: string | number | readonly string[] | undefined;
+  username: string | number | readonly string[] | undefined;
+  first_name: string | number | readonly string[] | undefined;
+  last_name: string | number | readonly string[] | undefined;
   name: string;
   email: string;
   password: string;
@@ -10,9 +14,13 @@ interface FormData {
 
 function Signup() {
   const [formData, setFormData] = useState<FormData>({
-    name: '',
+    name : '',
+    first_name: '',
+    last_name: '',
+    username: '',
     email: '',
     password: '',
+    password2: '',
   });
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -34,12 +42,23 @@ function Signup() {
       <h2>Register</h2>
       <form onSubmit={handleSubmit}>
         <div className="input-container">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="first_name">First Name:</label>
           <input
             type="text"
-            id="name"
-            name="name"
-            value={formData.name}
+            id="first_name"
+            name="first_name"
+            value={formData.first_name}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-container">
+          <label htmlFor="last_name">Last Name:</label>
+          <input
+            type="text"
+            id="last_name"
+            name="last_name"
+            value={formData.last_name}
             onChange={handleChange}
             required
           />
@@ -56,12 +75,34 @@ function Signup() {
           />
         </div>
         <div className="input-container">
+          <label htmlFor="username">Username:</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={formData.username}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-container">
           <label htmlFor="password">Password:</label>
           <input
             type="password"
             id="password"
             name="password"
-            value={formData.password}
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div className="input-container">
+          <label htmlFor="password2">Password again:</label>
+          <input
+            type="password"
+            id="password2"
+            name="password2"
+            value={formData.password2}
             onChange={handleChange}
             required
           />
