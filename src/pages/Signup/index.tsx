@@ -1,20 +1,19 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import './Signup.css'; // Import the CSS file for styling
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 interface FormData {
-  password2: string | number | readonly string[] | undefined;
-  username: string | number | readonly string[] | undefined;
-  first_name: string | number | readonly string[] | undefined;
-  last_name: string | number | readonly string[] | undefined;
-  name: string;
+  first_name: string;
+  last_name: string;
+  username: string;
   email: string;
   password: string;
+  password2: string;
 }
 
 function Signup() {
   const [formData, setFormData] = useState<FormData>({
-    name : '',
     first_name: '',
     last_name: '',
     username: '',
@@ -22,6 +21,10 @@ function Signup() {
     password: '',
     password2: '',
   });
+
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+
+  const history = useHistory();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -31,10 +34,31 @@ function Signup() {
     });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle signup logic here, e.g., user registration
-    console.log('Signup Data:', formData);
+
+    try {
+      const response = await axios.post(
+        'http://127.0.0.1:8000/api/accounts/signup/',
+        formData
+      );
+
+      if (response.status === 201) {
+        // Successful signup, set success message and redirect to landing page
+        setErrorMessage(null); // Clear any previous error message
+        history.push('/home');
+      } else {
+        // Handle signup error here, e.g., display an error message
+        setErrorMessage('Signup failed. Please check your input.');
+      }
+    } catch (error) {
+        
+          // Handle other errors
+          setErrorMessage('Check your email and try another username');
+        
+      
+      console.error('Signup error:', error);
+    }
   };
 
   return (
@@ -91,7 +115,7 @@ function Signup() {
             type="password"
             id="password"
             name="password"
-            value={formData.email}
+            value={formData.password}
             onChange={handleChange}
             required
           />
@@ -109,6 +133,7 @@ function Signup() {
         </div>
         <button type="submit">Sign Up</button>
       </form>
+      {errorMessage && <p className="error-message">{errorMessage}</p>}
       <p>
         Already have an account? <Link to="/login">Login</Link>
       </p>
