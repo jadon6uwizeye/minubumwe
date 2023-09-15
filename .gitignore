@@ -201,3 +201,4 @@ cython_debug/
 # everywhere there is a folder migrations
 **/migrations
 ```
+back_end/documents/*

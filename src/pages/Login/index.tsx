@@ -37,6 +37,12 @@ function Login() {
       );
 
       if (response.status === 200) {
+        // store jwt token in local storage
+        console.log(response.data.access);
+        localStorage.setItem('token', response.data.access);
+        console.log(localStorage.getItem('token'));
+
+        
         // Successful login, set success message and redirect to landing page
         setSuccessMessage('Login successful.');
         setErrorMessage(null); // Clear any previous error message
