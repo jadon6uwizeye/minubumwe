@@ -75,14 +75,7 @@ const Contact = ({ title, content, id, t }: ContactProps) => {
       return;
     }
     
-    // Prepare the data to be sent to the backend API
-    const requestData = {
-      genocide_survivor_certificate: genocideSurvivorCertificate,
-      social_status_class: values.social_status_class,
-      deprived_certificate: deprivedCertificate,
-      sector: values.sector,
-      message: values.message,
-    };
+   
 
     const formadata = new FormData();
     genocideSurvivorCertificate&&formadata.append("genocide_survivor_certificate",genocideSurvivorCertificate)

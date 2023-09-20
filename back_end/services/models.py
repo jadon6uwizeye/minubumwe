@@ -39,4 +39,4 @@ class ApprovedRequest(models.Model):
     approved =  models.BooleanField(default=True)
 
     def __str__(self):
-        return self.user
+        return self.user.first_name 
