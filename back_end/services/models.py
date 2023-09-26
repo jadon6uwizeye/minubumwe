@@ -16,6 +16,8 @@ class Request(models.Model):
     sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
     message = models.TextField()
     approved =  models.BooleanField(default=False)
+    rejected =  models.BooleanField(default=False)
+
 
 class SectorApprovedRequest(models.Model):
     sector = models.ForeignKey(Sector, on_delete=models.CASCADE)
@@ -25,6 +27,7 @@ class SectorApprovedRequest(models.Model):
     deprived_certificate = models.FileField(upload_to='documents/')
     message = models.TextField()
     approved =  models.BooleanField(default=False)
+    rejected =  models.BooleanField(default=False)
 
     
     
