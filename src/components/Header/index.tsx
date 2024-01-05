@@ -46,16 +46,41 @@ const Header = ({ t }: any) => {
         <CustomNavLinkSmall onClick={() => scrollTo("product")}>
           <Span>{t("Product")}</Span>
         </CustomNavLinkSmall>
+          {
+            localStorage.getItem('token') ?
+            <CustomNavLinkSmall>
+              <Span>
+                {t("Hello")},
+                {
+                localStorage.getItem('username')
+                }</Span>
+            </CustomNavLinkSmall>
+            : <></>
+          }
         <CustomNavLinkSmall
           style={{ width: "180px" }}
-          onClick={() => 
-            // navigate to login page
-            window.location.href = "/login"
+          onClick={() => {
+            if (localStorage.getItem('token')) {
+              localStorage.removeItem('token');
+              localStorage.removeItem('refresh');
+              localStorage.removeItem('username');
+              localStorage.removeItem('email');
+              localStorage.removeItem('first_name');
+              localStorage.removeItem('last_name');
+            }
+            window.location.href = '/login';
+          }
           }
         >
+        {
+          localStorage.getItem('token') ?
           <Span>
-            <Button>{t("Login/Register")}</Button>
+            <Button>{t("Logout")}</Button>
           </Span>
+          : <Span>
+          <Button>{t("Login/Register")}</Button>
+        </Span>
+        }
         </CustomNavLinkSmall>
       </>
     );

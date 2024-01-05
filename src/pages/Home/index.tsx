@@ -5,7 +5,7 @@ import AboutContent from "../../content/AboutContent.json";
 import MissionContent from "../../content/MissionContent.json";
 import ProductContent from "../../content/ProductContent.json";
 import ContactContent from "../../content/ContactContent.json";
-
+import Header from "../../components/Header";
 const Contact = lazy(() => import("../../components/ContactForm"));
 const MiddleBlock = lazy(() => import("../../components/MiddleBlock"));
 const Container = lazy(() => import("../../common/Container"));
@@ -15,6 +15,7 @@ const ContentBlock = lazy(() => import("../../components/ContentBlock"));
 const Home = () => {
   return (
     <Container>
+      <Header />
       <ScrollToTop />
       <ContentBlock
         type="right"

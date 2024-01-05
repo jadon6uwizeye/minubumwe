@@ -40,6 +40,12 @@ function Login() {
         // store jwt token in local storage
         console.log(response.data.access);
         localStorage.setItem('token', response.data.access);
+        localStorage.setItem('refresh', response.data.refresh);
+        localStorage.setItem('username', response.data.username);
+        localStorage.setItem('email', response.data.email);
+        localStorage.setItem('first_name', response.data.first_name);
+        localStorage.setItem('last_name', response.data.last_name);
+        
         console.log(localStorage.getItem('token'));
 
         

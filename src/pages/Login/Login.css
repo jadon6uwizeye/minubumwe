@@ -1,12 +1,21 @@
 .login-container {
-    max-width: 300px;
+    max-width: 360px;
+    height: 600px;
     margin: 0 auto;
+    margin-top: 100px;
+    margin-bottom: 100px;
     padding: 20px;
     background-color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* center content */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
   }
-  
+
   .login-container h2 {
     text-align: center;
     color: #333;
@@ -14,6 +23,7 @@
   
   .input-container {
     margin-bottom: 15px;
+    width: 300px;
   }
   
   .input-container label {
